@@ -1,0 +1,17 @@
+---
+- name: ensure nameserver in /etc/resolv.conf
+  lineinfile: line="nameserver {{ dns_server }}" 
+              insertbefore=BOF
+              dest=/etc/resolv.conf
+              state=present
+
+- name: ensure domain in /etc/resolv.conf
+  lineinfile: line="domain {{ domain_name }}" 
+              dest=/etc/resolv.conf
+              regexp=^domain.* 
+              state=present
+
+- name: remove search directive in /etc/resolv.conf
+  lineinfile: dest=/etc/resolv.conf
+              regexp=^search.* 
+              state=absent

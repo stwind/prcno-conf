@@ -1,0 +1,19 @@
+---
+- hosts: all
+  remote_user: "{{init_user | default('root')}}"
+  sudo: true
+  vars_files:
+    - vars/{{envn}}/common.yml
+  roles:
+    - pno.init
+  tags: ['initialize']
+
+- hosts: all
+  remote_user: "{{init_user | default('root')}}"
+  sudo: true
+  vars_files:
+    - vars/{{envn}}/common.yml
+  tasks:
+    - name: debug
+      debug: msg={{dns_server}}
+  tags: ['debug']

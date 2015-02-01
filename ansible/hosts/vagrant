@@ -1,0 +1,5 @@
+# vi: set ft=config :
+vagrant01 ansible_ssh_host=192.168.43.10 envn=vagrant
+
+[mongodb]
+vagrant01

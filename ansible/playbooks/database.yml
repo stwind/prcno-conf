@@ -1,0 +1,9 @@
+---
+- hosts: mongodb
+  sudo: true
+  vars_files:
+    - vars/{{envn}}/common.yml
+  roles:
+    - Stouts.mongodb
+  tags: ['mongodb']
+

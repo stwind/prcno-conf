@@ -1,0 +1,4 @@
+---
+dependencies:
+  - Ansibles.apt
+  - Ansibles.hostname

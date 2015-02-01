@@ -1,0 +1,8 @@
+---
+- include: init.yml
+
+- hosts: all
+
+# - include: basic.yml
+- include: database.yml
+# - include: apps.yml
