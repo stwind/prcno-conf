@@ -6,4 +6,3 @@
   roles:
     - Stouts.mongodb
   tags: ['mongodb']
-

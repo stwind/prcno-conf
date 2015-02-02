@@ -1,0 +1,5 @@
+---
+nodejs_version: "0.10.36"
+node_env: 
+  NODE_HOME: /usr/local/nodejs/default
+  PATH: "{{ lookup('env', 'PATH') }}:/usr/local/nodejs/default/bin"

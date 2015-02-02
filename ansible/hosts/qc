@@ -1,0 +1,5 @@
+# vi: set ft=config :
+misc-gd01.qc.swnd ansible_ssh_host=myqc-misc-gd01 ansible_ssh_port=20022 envn=qc
+
+[mongodb]
+misc-gd01.qc.swnd
