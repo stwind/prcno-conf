@@ -1,0 +1,6 @@
+{
+    "db": "mongodb://localhost:27017/buckets_development",
+    "logLevel": "info",
+    "buildsPath": "{{buckets_dir}}/builds/",
+    "env": "development"
+}

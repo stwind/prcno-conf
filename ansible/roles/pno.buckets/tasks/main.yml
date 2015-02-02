@@ -10,15 +10,30 @@
 - name: Install global node modules
   npm: name={{item}} state=present global=yes
   with_items:
-    - gulp
+    - grunt-cli
 
 - name: Ensure folders permission
   file: path={{item}} state=directory recurse=yes owner={{buckets_user}}
   with_items:
     - "{{buckets_dir}}"
-    - /var/log/buckets
 
 - name: Clone buckets source
   git: repo={{buckets_repo}} dest={{buckets_dir}} version={{buckets_version}} accept_hostkey=yes
   register: buckets_clone_res
   sudo_user: "{{buckets_user}}"
+
+- name: Build buckets
+  shell: chdir={{buckets_dir}}
+         npm install
+  when: buckets_clone_res.changed
+  notify: restart buckets
+  sudo_user: "{{buckets_user}}"
+  environment: node_env
+
+- name: Copy buckets config
+  template: src=config.json dest={{buckets_dir}}/config/config.json owner={{buckets_user}} mode=0644
+  notify: restart buckets
+
+- name: Ensure buckets supervisor config
+  template: src=buckets.conf dest=/etc/supervisor/conf.d/buckets.conf owner=root mode=0644
+  notify: restart buckets
