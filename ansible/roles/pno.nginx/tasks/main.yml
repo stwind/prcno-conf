@@ -1,0 +1,16 @@
+---
+- name: install dependencies from apt
+  apt: pkg=python-software-properties state=present
+
+- name: add nginx official apt repository
+  apt_repository: repo="ppa:nginx/stable"
+
+- name: Making sure nginx is present
+  apt: state=present pkg=nginx
+
+- name: Remove default Nginx site
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  notify: restart nginx
+
+- name: ensure nginx.conf
+  template: src=nginx.conf dest=/etc/nginx/nginx.conf owner=root group=root mode=0644
