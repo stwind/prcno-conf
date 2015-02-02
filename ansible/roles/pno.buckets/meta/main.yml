@@ -1,0 +1,6 @@
+---
+dependencies:
+  - Ansibles.apt 
+  - zenoamaro.supervisord 
+  - ANXS.nodejs 
+  - pno.nginx

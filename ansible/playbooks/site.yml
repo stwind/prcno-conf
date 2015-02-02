@@ -5,4 +5,4 @@
 
 # - include: basic.yml
 - include: database.yml
-# - include: apps.yml
+- include: apps.yml

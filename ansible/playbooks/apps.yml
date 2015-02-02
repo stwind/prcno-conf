@@ -1,0 +1,10 @@
+---
+- hosts: buckets
+  sudo: true
+  vars_files:
+    - vars/{{envn}}/common.yml
+    - vars/{{envn}}/nodejs.yml
+    - vars/{{envn}}/buckets.yml
+  roles:
+    - pno.buckets
+  tags: ['buckets']

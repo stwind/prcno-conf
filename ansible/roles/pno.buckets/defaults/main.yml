@@ -1,0 +1,5 @@
+---
+buckets_user: buckets
+buckets_repo: https://github.com/stwind/buckets.git
+buckets_version: prcno
+buckets_dir: /opt/buckets

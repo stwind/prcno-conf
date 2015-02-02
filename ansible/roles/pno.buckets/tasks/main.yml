@@ -1,0 +1,24 @@
+---
+- name: Install dependencies from apt
+  apt: pkg={{item}} state=present
+  with_items:
+    - git
+
+- name: Ensure buckets user
+  user: name={{buckets_user}} comment="buckets" createhome=yes shell=/bin/bash generate_ssh_key=yes
+
+- name: Install global node modules
+  npm: name={{item}} state=present global=yes
+  with_items:
+    - gulp
+
+- name: Ensure folders permission
+  file: path={{item}} state=directory recurse=yes owner={{buckets_user}}
+  with_items:
+    - "{{buckets_dir}}"
+    - /var/log/buckets
+
+- name: Clone buckets source
+  git: repo={{buckets_repo}} dest={{buckets_dir}} version={{buckets_version}} accept_hostkey=yes
+  register: buckets_clone_res
+  sudo_user: "{{buckets_user}}"
